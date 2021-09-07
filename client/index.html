@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<script>
+    let webSocket = new WebSocket("ws://localhost:8080/ws");
+    console.log("Try to connect to WebSocket at ws://localhost:8080/ws");
+
+    webSocket.onopen = () => {
+        console.log("Successfully connected to WebSocket...");
+
+        webSocket.send("It's a client message");
+    }
+
+    webSocket.onmessage = (msg) => {
+        console.log("WebSocket message:",  msg)       
+    }
+
+    webSocket.onerror = (error) => {
+        console.log("WebSocket has errors:", error)       
+    }
+
+    webSocket.onclose = (event) => {
+        console.log("WebSocket closed connection:", event)       
+    }
+</script>
+
+</body>
+</html>
